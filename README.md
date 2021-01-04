@@ -1,2 +1,7 @@
 # Sem6
-Repository contains my Semester 6
+Semester 6 IIITDM
+
+# Subjects
+[Computer Arhitecture](./Computer Architecture)
+
+[Embedded Systems]
