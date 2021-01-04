@@ -1,7 +1,5 @@
-# Sem6
-Semester 6 IIITDM
-
 # Subjects
-[Computer Arhitecture](./Computer Architecture)
+## [Computer Arhitecture](https://github.com/anant0301/Sem6/tree/main/Computer%20Architecture)
 
-[Embedded Systems]
+## [Embedded Systems](https://github.com/anant0301/Sem6/tree/main/Embedded%20Systems)
+
