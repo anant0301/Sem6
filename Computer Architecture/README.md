@@ -7,8 +7,8 @@
 
 
 ## Verilog
-### 1. [Single Precision Floating Point Adder]() 
-### 2. [Single Precision Floating Point Multiplier]() 
+### 1. [Single Precision Floating Point Adder](./) 
+### 2. [Single Precision Floating Point Multiplier](./) 
 
 
 ## Evluation Pattern

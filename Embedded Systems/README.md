@@ -4,7 +4,7 @@
 
 ## MicroController Specs
 
-![TM4C123GH6PM Features](https://github.com/anant0301/Sem6/tree/main/Embedded%20Systems/Microcontroller/features.png)
+![TM4C123GH6PM Features](./Microcontroller/features.png)
 
 
 ## References
