@@ -1,10 +1,7 @@
 ## Notes Embedded Systems
 
-
-
-## MicroController Specs
-
-![TM4C123GH6PM Features](./Microcontroller/features.png)
+## [Class Notes](./Class/Notes.md)
+## [MicroController Specs](./Microcontroller/Notes.md)
 
 
 ## References

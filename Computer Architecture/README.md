@@ -1,18 +1,19 @@
-## Notes Computer Architecture
+## Notes Computer Architecture ##
 
-### 1. Cache Memory
-### 2. Main Memory
-### 3. Processors
-### 4. Brief Intro to Architectures
+### 1. Cache Memory ###
+### 2. Main Memory ###
+### 3. Processors ###
+### 4. Brief Intro to Architectures ###
+
+## [Class Notes](./Class/Notes.md) ##
+
+## Verilog ##
+### 1. [Single Precision Floating Point Adder](./) ###
+### 2. [Single Precision Floating Point Multiplier](./) ###
 
 
-## Verilog
-### 1. [Single Precision Floating Point Adder](./) 
-### 2. [Single Precision Floating Point Multiplier](./) 
-
-
-## Evluation Pattern
-### Theory COM307T Computer Architecture Course
+## Evluation Pattern ##
+### Theory COM307T Computer Architecture Course ###
 
 Relative Grading will be followed.
 
@@ -30,7 +31,7 @@ Books and references:
 1. [Computer Architecture: A Quantitative Approach Fifth Edition, John L. Hennessy and David A. Patterson, Morgan Kaufmann Publisher](http://acs.pub.ro/~cpop/SMPA/Computer%20Architecture%20A%20Quantitative%20Approach%20(5th%20edition).pdf)
 
 
-### Lab COM307P Computer Architecture Practice Course Evaluation:
+### Lab COM307P Computer Architecture Practice Course Evaluation ###
 
 1) Daily Evaluation 30 Marks - 10 experiments each experiment is for 30 Marks. 
 20 Marks for Demo and 10 Marks for Viva.
