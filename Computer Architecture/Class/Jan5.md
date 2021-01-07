@@ -3,7 +3,7 @@
  ### Factors of Improvement 
 - Semiconductor Technology Improvements
     - Lead to Size Decrease of Chips
-    - Improved Clock Cycle per Seconds capaabilites
+    - Improved Clock Cycle per Seconds capabilites
 - Compiler Improvements
     - Improvement in tHLL Compiler, UNIX
     - Lead to RISC Architecture
@@ -16,3 +16,5 @@ There was too much stuff about the improvement in the years... we have come so f
     - Data Level Parallelism (DLP)
     - Thread Level Parallelism (TLP)
     - Request Level Parallelism (RLP)
+
+[contd](./Jan7.md)

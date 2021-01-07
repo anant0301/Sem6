@@ -7,6 +7,9 @@
 
 ## [Class Notes](./Class/Notes.md) ##
 
+## Extra Materials ##
+1. [Saylor.org](https://learn.saylor.org/course/CS301)
+
 ## Verilog ##
 ### 1. [Single Precision Floating Point Adder](./) ###
 ### 2. [Single Precision Floating Point Multiplier](./) ###
