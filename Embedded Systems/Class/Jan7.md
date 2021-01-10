@@ -48,7 +48,6 @@ Basis - Instruction Set Architecture (**ISA**)
     - RISC - Reduced Instruction Set Computer
     - CISC - Complex Instruction Set Computer
 
---- 
 | CISC | RISC |
 | --- | --- |
 | Large Set of instructions | Smaller set of instruction |
@@ -58,7 +57,6 @@ Basis - Instruction Set Architecture (**ISA**)
 | Many Addressing mode | Particular Addressing mode |
 | High Clock speed | Low Clock speed |
 | Pipelining not possible | Pipelining Possible |
----
 
 ### Element of Embedded System boards ###
 1. Connectivity elements- USB, RJ45-Ethernet

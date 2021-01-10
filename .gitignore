@@ -1,3 +1,6 @@
 # ignore all pdfs.. 
 *.pdf
-**/Product Design/
+*.mp4
+*.mp3
+*.wav
+./Product*Design*Practise/
