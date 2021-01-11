@@ -7,19 +7,23 @@ module fl_adder_32bit(
 );
     reg [31:0] e1, e2;
     reg [31:0] answer;
+    reg sel_ans;
     always @(in1 or in0)
     begin 
         if (in0[30:0] == 0 || in1[30:0] == {8'hff, 23'h0})
         begin
             answer <= in1;
+            sel_ans = 1'b1;
         end
         else if(in1[30:0] == 0 || in0[30:0] == {8'hff, 23'h0})
         begin
             answer <= in0;
+            sel_ans = 1'b1;
         end
         else
         begin
             answer <= 32'hx;
+            sel_ans = 1'b0;
         end
     end
 
@@ -46,10 +50,15 @@ module fl_adder_32bit(
             e1 <= in0;
             e2 <= in1;
         end
-        else if (in1[31] !== in0[31] && in1[30:0] == in0[30:0])
+        else if (in1[31] !== in0[31])
         begin
             e1 <= 0;
             e2 <= 0;
+        end
+        else 
+        begin
+            e1 <= in1;
+            e2 <= in0;
         end
     end
 
@@ -92,14 +101,13 @@ module fl_adder_32bit(
         cout
     );
     
-    always@(answer)
+    always@(*)
     begin
-        out <= answer;
-    end
-
-    always @(sum)
-    begin
-        if (sum[24] == 1 && e1 != 0)
+        if (sel_ans == 1)
+        begin
+            out <= answer;
+        end
+        else if (sum[24] == 1 && e1 != 0)
         begin
             out[31] <= e1[31];
             out[30:23] <= e1[30:23] + 1;
