@@ -36,3 +36,6 @@ Based on the emphasis the architecture changes, the types of computer classes co
 1. Multiple Instruction Multiple Data Stream **MIMD**- Types are
     - Tightly-Coupled MIMD
     - Loosely-Coupled MIMD
+
+
+[contd](./Jan11.md)
