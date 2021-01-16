@@ -29,8 +29,22 @@ Dealing with the tradde-offs the need is to have a knowledge of software and har
 
 The other way to improve the embedded system would be to use an optimized set of instructions... ARM set of instructions
 
-
-
+The images contain the information explained in the class
 ![ARM versions](./Images/ARM%20versions.png)
+
+ARM is RISC based:
+- RISC is based on executing instructions in one cycle at a high clock frequency.
+- The features in the design are:
+    - Instruction - reduced/single cycle/fixed length
+    - Pipelines - Decode in 1 stage / no need for microcode
+    - Redisters
+    - Load and Store
+ARM is different from RISC:
+- Some instrucrtinos have variable cycle execution
+- In live barrel shifter in more complex inistrucction
+- Thumb 16-bit instructoin set
+- Conditional Execution
+- Enhanced Instruction
+
 ![ARM prev Architecture](./Images/ARM%20prev%20Architecture.png)
 ![ARM Architecture](./Images/ARM%20Architecture.png)
