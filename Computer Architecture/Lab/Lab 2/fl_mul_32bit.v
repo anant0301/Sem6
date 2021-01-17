@@ -11,12 +11,12 @@ module fl_mul_32bit(
     reg sel_ans;
     always @(in1 or in0)
     begin 
-        if (in0[30:0] == 0 || in0[30:0] == {8'hff, 23'h0})
+        if (in0[30:0] == 0 || in0[30:23] == 8'hff)
         begin
             answer <= in0;
             sel_ans = 1'b1;
         end
-        else if(in1[30:0] == 0 || in1[30:0] == {8'hff, 23'h0})
+        else if(in1[30:0] == 0 || in1[30:23] == 8'hff)
         begin
             answer <= in1;
             sel_ans = 1'b1;
