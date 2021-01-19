@@ -11,19 +11,19 @@ int main() {
     while (1)
     {
         // Red LED
-        *((unsigned int *) 0x40025008U) = 0x02;
+        *((unsigned int *) 0x400253FCU) = 0x02;
         // seconds(1);
-        *((unsigned int *) 0x40025008U) = 0x00;
+        *((unsigned int *) 0x400253FCU) = 0x00;
         
         // Blue LED
-        *((unsigned int *) 0x40025010U) = 0x04;
+        *((unsigned int *) 0x400253FCU) = 0x04;
         // seconds(2);
-        *((unsigned int *) 0x40025010U) = 0x00;
+        *((unsigned int *) 0x400253FCU) = 0x00;
         
         // Green LED
-        *((unsigned int *) 0x40025020U) = 0x08;
+        *((unsigned int *) 0x400253FCU) = 0x08;
         // seconds(3);
-        *((unsigned int *) 0x40025020U) = 0x00;
+        *((unsigned int *) 0x400253FCU) = 0x00;
     }
     return 0;
 }
