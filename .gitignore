@@ -3,6 +3,8 @@
 *.mp4
 *.mp3
 *.wav
+*.zip
+*.tar
 !./Product*Design*Practise/
 ./Product*Management/
 ./Projects.md
