@@ -8,8 +8,8 @@ to
 
 ### Mode in ARM ###
 
-Mode | Normal
---- | ---
+Mode | Normal 
+---|--- 
 User | Normal execution, can be interrupted by modes of higher priority
 Fast Interrupt Query (IRQ) | High priority interrupt request 
 Interrupt Request (IRQ) | Low priority interrupt
