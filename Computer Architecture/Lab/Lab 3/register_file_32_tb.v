@@ -8,6 +8,8 @@ module register_file_32_tb;
     reg [31:0] data_write;
     output [31:0] data_read1;
     output [31:0] data_read2;
+    reg read_sel = 1;
+    reg write_sel = 0;
 
     register_file_32 reg_file (
         sel1,
@@ -15,31 +17,32 @@ module register_file_32_tb;
         sel_write,
         data_write,
         clk,
+        read_sel,
+        write_sel,
         data_read1,
         data_read2
     );
-
+    initial begin
+    clk = 0;
+    forever 	
+        #5 clk =~clk;
+    end
+    integer i = 0;
     initial 
     begin
-        sel1 = 12;
-        sel2 = 24;
-        clk = 0;
-        data_write = 0;
-        sel_write = 0;
-        
-        #5
-        clk = 1;
-        #5
-        clk = 0;
-        #5
-        clk = 1;
-       
-        #5
-        sel_write = 1;
-        data_write = 1;
-        #5
-        sel1 = 10;
-        sel2 = 21;
+        for (i = 0 ; i < 32; ++i) 
+        begin
+            #5
+            #5 
+            sel1 = i;
+            sel2 = 32 - i - 1;
+            #5
+            data_write = i * i;
+            #5
+            sel_write = i;
+
+        end
+        $finish;
     end
 
     initial 

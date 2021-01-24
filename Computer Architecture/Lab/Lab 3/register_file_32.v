@@ -4,6 +4,8 @@ module register_file_32(
     input [4:0] write_select_line,
     input [31:0] write_data,
     input clk,
+    input read_sel,
+    input write_sel,
     output reg [31:0] reg_data1,
     output reg [31:0] reg_data2
 );
@@ -66,95 +68,95 @@ module register_file_32(
     );
 
     wire [31:0] wire_reg [31:0];
-    assign wire_reg[0] = reg_file[0];
-    assign wire_reg[1] = reg_file[1];
-    assign wire_reg[2] = reg_file[2];
-    assign wire_reg[3] = reg_file[3];
-    assign wire_reg[4] = reg_file[4];
-    assign wire_reg[5] = reg_file[5];
-    assign wire_reg[6] = reg_file[6];
-    assign wire_reg[7] = reg_file[7];
-    assign wire_reg[8] = reg_file[8];
-    assign wire_reg[9] = reg_file[9];
-    assign wire_reg[10] = reg_file[10];
-    assign wire_reg[11] = reg_file[11];
-    assign wire_reg[12] = reg_file[12];
-    assign wire_reg[13] = reg_file[13];
-    assign wire_reg[14] = reg_file[14];
-    assign wire_reg[15] = reg_file[15];
-    assign wire_reg[16] = reg_file[16];
-    assign wire_reg[17] = reg_file[17];
-    assign wire_reg[18] = reg_file[18];
-    assign wire_reg[19] = reg_file[19];
-    assign wire_reg[20] = reg_file[20];
-    assign wire_reg[21] = reg_file[21];
-    assign wire_reg[22] = reg_file[22];
-    assign wire_reg[23] = reg_file[23];
-    assign wire_reg[24] = reg_file[24];
-    assign wire_reg[25] = reg_file[25];
-    assign wire_reg[26] = reg_file[26];
-    assign wire_reg[27] = reg_file[27];
-    assign wire_reg[28] = reg_file[28];
-    assign wire_reg[29] = reg_file[29];
-    assign wire_reg[30] = reg_file[30];
-    assign wire_reg[31] = reg_file[31];    
+    // assign wire_reg[0] = reg_file[0];
+    // assign wire_reg[1] = reg_file[1];
+    // assign wire_reg[2] = reg_file[2];
+    // assign wire_reg[3] = reg_file[3];
+    // assign wire_reg[4] = reg_file[4];
+    // assign wire_reg[5] = reg_file[5];
+    // assign wire_reg[6] = reg_file[6];
+    // assign wire_reg[7] = reg_file[7];
+    // assign wire_reg[8] = reg_file[8];
+    // assign wire_reg[9] = reg_file[9];
+    // assign wire_reg[10] = reg_file[10];
+    // assign wire_reg[11] = reg_file[11];
+    // assign wire_reg[12] = reg_file[12];
+    // assign wire_reg[13] = reg_file[13];
+    // assign wire_reg[14] = reg_file[14];
+    // assign wire_reg[15] = reg_file[15];
+    // assign wire_reg[16] = reg_file[16];
+    // assign wire_reg[17] = reg_file[17];
+    // assign wire_reg[18] = reg_file[18];
+    // assign wire_reg[19] = reg_file[19];
+    // assign wire_reg[20] = reg_file[20];
+    // assign wire_reg[21] = reg_file[21];
+    // assign wire_reg[22] = reg_file[22];
+    // assign wire_reg[23] = reg_file[23];
+    // assign wire_reg[24] = reg_file[24];
+    // assign wire_reg[25] = reg_file[25];
+    // assign wire_reg[26] = reg_file[26];
+    // assign wire_reg[27] = reg_file[27];
+    // assign wire_reg[28] = reg_file[28];
+    // assign wire_reg[29] = reg_file[29];
+    // assign wire_reg[30] = reg_file[30];
+    // assign wire_reg[31] = reg_file[31];    
     
-    // demux5_32 demux1_32_blk1 [31:0] (
-    // write_data[31:0],
-    // write_select_line[4:0],
-    // wire_reg[0][31:0], wire_reg[1][31:0], wire_reg[2][31:0], wire_reg[3][31:0], wire_reg[4][31:0], wire_reg[5][31:0], wire_reg[6][31:0], wire_reg[7][31:0], wire_reg[8][31:0], wire_reg[9][31:0],
-    // wire_reg[10][31:0], wire_reg[11][31:0], wire_reg[12][31:0], wire_reg[13][31:0], wire_reg[14][31:0], wire_reg[15][31:0], wire_reg[16][31:0], wire_reg[17][31:0], wire_reg[18][31:0], wire_reg[19][31:0],
-    // wire_reg[20][31:0], wire_reg[21][31:0], wire_reg[22][31:0], wire_reg[23][31:0], wire_reg[24][31:0], wire_reg[25][31:0], wire_reg[26][31:0], wire_reg[27][31:0], wire_reg[28][31:0], wire_reg[29][31:0],
-    // wire_reg[30][31:0], wire_reg[31][31:0]
-    // );
+    demux5_32 demux1_32_blk1 [31:0] (
+    write_data[31:0],
+    write_select_line[4:0],
+    wire_reg[0][31:0], wire_reg[1][31:0], wire_reg[2][31:0], wire_reg[3][31:0], wire_reg[4][31:0], wire_reg[5][31:0], wire_reg[6][31:0], wire_reg[7][31:0], wire_reg[8][31:0], wire_reg[9][31:0],
+    wire_reg[10][31:0], wire_reg[11][31:0], wire_reg[12][31:0], wire_reg[13][31:0], wire_reg[14][31:0], wire_reg[15][31:0], wire_reg[16][31:0], wire_reg[17][31:0], wire_reg[18][31:0], wire_reg[19][31:0],
+    wire_reg[20][31:0], wire_reg[21][31:0], wire_reg[22][31:0], wire_reg[23][31:0], wire_reg[24][31:0], wire_reg[25][31:0], wire_reg[26][31:0], wire_reg[27][31:0], wire_reg[28][31:0], wire_reg[29][31:0],
+    wire_reg[30][31:0], wire_reg[31][31:0]
+    );
 
     always @(*) 
     begin
-        reg_data1 <= read_data1;
-        reg_data2 <= read_data2;
+        if (read_sel == 1)
+        begin
+            reg_data1 <= read_data1;
+            reg_data2 <= read_data2;            
+        end
     end
 
     always @(posedge clk) 
     begin
-        reg_file[0] <= wire_reg[0];
-        reg_file[1] <= wire_reg[1];
-        reg_file[2] <= wire_reg[2];
-        reg_file[3] <= wire_reg[3];
-        reg_file[4] <= wire_reg[4];
-        reg_file[5] <= wire_reg[5];
-        reg_file[6] <= wire_reg[6];
-        reg_file[7] <= wire_reg[7];
-        reg_file[8] <= wire_reg[8];
-        reg_file[9] <= wire_reg[9];
-        reg_file[10] <= wire_reg[10];
-        reg_file[11] <= wire_reg[11];
-        reg_file[12] <= wire_reg[12];
-        reg_file[13] <= wire_reg[13];
-        reg_file[14] <= wire_reg[14];
-        reg_file[15] <= wire_reg[15];
-        reg_file[16] <= wire_reg[16];
-        reg_file[17] <= wire_reg[17];
-        reg_file[18] <= wire_reg[18];
-        reg_file[19] <= wire_reg[19];
-        reg_file[20] <= wire_reg[20];
-        reg_file[21] <= wire_reg[21];
-        reg_file[22] <= wire_reg[22];
-        reg_file[23] <= wire_reg[23];
-        reg_file[24] <= wire_reg[24];
-        reg_file[25] <= wire_reg[25];
-        reg_file[26] <= wire_reg[26];
-        reg_file[27] <= wire_reg[27];
-        reg_file[28] <= wire_reg[28];
-        reg_file[29] <= wire_reg[29];
-        reg_file[30] <= wire_reg[30];
-        reg_file[31] <= wire_reg[31];
-
-        $display ($time, " reg0= %d,\nreg1= %d,\nreg2= %d,\nreg3= %d,\nreg4= %d,\nreg5= %d,\nreg6= %d,\nreg7= %d,\nreg8= %d,\nreg9= %d,\nreg10= %d,\nreg11= %d,\nreg12= %d,\nreg13= %d,\nreg14= %d,\nreg15= %d,\nreg16= %d,\nreg17= %d,\nreg18= %d,\nreg19= %d,\nreg20= %d,\nreg21= %d,\nreg22= %d,\nreg23= %d,\nreg24= %d,\nreg25= %d,\nreg26= %d,\nreg27= %d,\nreg28= %d,\nreg29= %d,\nreg30= %d,\nreg31= %d", 
-        reg_file[0], reg_file[1], reg_file[2], reg_file[3], reg_file[4], reg_file[5], reg_file[6], reg_file[7], reg_file[8], reg_file[9],
-        reg_file[10], reg_file[11], reg_file[12], reg_file[13], reg_file[14], reg_file[15], reg_file[16], reg_file[17], reg_file[18], reg_file[19],
-        reg_file[20], reg_file[21], reg_file[22], reg_file[23], reg_file[24], reg_file[25], reg_file[26], reg_file[27], reg_file[28], reg_file[29],
-        reg_file[30], reg_file[31]
-        );
+        if (write_sel == 1)
+        begin
+            reg_file[0] <= wire_reg[0];
+            reg_file[1] <= wire_reg[1];
+            reg_file[2] <= wire_reg[2];
+            reg_file[3] <= wire_reg[3];
+            reg_file[4] <= wire_reg[4];
+            reg_file[5] <= wire_reg[5];
+            reg_file[6] <= wire_reg[6];
+            reg_file[7] <= wire_reg[7];
+            reg_file[8] <= wire_reg[8];
+            reg_file[9] <= wire_reg[9];
+            reg_file[10] <= wire_reg[10];
+            reg_file[11] <= wire_reg[11];
+            reg_file[12] <= wire_reg[12];
+            reg_file[13] <= wire_reg[13];
+            reg_file[14] <= wire_reg[14];
+            reg_file[15] <= wire_reg[15];
+            reg_file[16] <= wire_reg[16];
+            reg_file[17] <= wire_reg[17];
+            reg_file[18] <= wire_reg[18];
+            reg_file[19] <= wire_reg[19];
+            reg_file[20] <= wire_reg[20];
+            reg_file[21] <= wire_reg[21];
+            reg_file[22] <= wire_reg[22];
+            reg_file[23] <= wire_reg[23];
+            reg_file[24] <= wire_reg[24];
+            reg_file[25] <= wire_reg[25];
+            reg_file[26] <= wire_reg[26];
+            reg_file[27] <= wire_reg[27];
+            reg_file[28] <= wire_reg[28];
+            reg_file[29] <= wire_reg[29];
+            reg_file[30] <= wire_reg[30];
+            reg_file[31] <= wire_reg[31];
+        end
+        // $display ($time, " reg0= %d,\nreg1= %d,\nreg2= %d,\nreg3= %d,\nreg4= %d,\nreg5= %d,\nreg6= %d,\nreg7= %d,\nreg8= %d,\nreg9= %d,\nreg10= %d,\nreg11= %d,\nreg12= %d,\nreg13= %d,\nreg14= %d,\nreg15= %d,\nreg16= %d,\nreg17= %d,\nreg18= %d,\nreg19= %d,\nreg20= %d,\nreg21= %d,\nreg22= %d,\nreg23= %d,\nreg24= %d,\nreg25= %d,\nreg26= %d,\nreg27= %d,\nreg28= %d,\nreg29= %d,\nreg30= %d,\nreg31= %d",  reg_file[0], reg_file[1], reg_file[2], reg_file[3], reg_file[4], reg_file[5], reg_file[6], reg_file[7], reg_file[8], reg_file[9], reg_file[10], reg_file[11], reg_file[12], reg_file[13], reg_file[14], reg_file[15], reg_file[16], reg_file[17], reg_file[18], reg_file[19], reg_file[20], reg_file[21], reg_file[22], reg_file[23], reg_file[24], reg_file[25], reg_file[26], reg_file[27], reg_file[28], reg_file[29], reg_file[30], reg_file[31] );
 
     end
 
@@ -173,17 +175,16 @@ module mux32_1(
     wire [15:0] level5;
     wire [7:0] level4;
     wire [3:0] level3;
-    wire [4:0] level2;
-    wire [1:0] level1;
+    wire [1:0] level2;
     mux mux_level5 [15:0] (
-        {in0, in1, in2, in3, in4, in5, in6, in7, in8, in9, in10, in11, in12, in13, in14, in15},
-        {in16, in17, in18, in19, in20, in21, in22, in23, in24, in25, in26, in27, in28, in29, in30, in31},
+        {in15, in14, in13, in12, in11, in10, in9, in8, in7, in6, in5, in4, in3, in2, in1, in0},
+        {in31, in30, in29, in28, in27, in26, in25, in24, in23, in22, in21, in20, in19, in18, in17, in16},
         sel_line[4],
         level5[15:0]
     );
     mux mux_level4 [7:0] (level5[7:0], level5[15:8], sel_line[3], level4[7:0]);
     mux mux_level3 [3:0] (level4[3:0], level4[7:4], sel_line[2], level3[3:0]);
-    mux mux_level2 [1:0] (level3[1:0], level3[4:3], sel_line[1], level2[1:0]);
+    mux mux_level2 [1:0] (level3[1:0], level3[3:2], sel_line[1], level2[1:0]);
     mux mux_level1 (level2[0], level2[1], sel_line[0], out);
     
 endmodule
@@ -192,12 +193,18 @@ module mux(
     input in0,
     input in1,
     input sel,
-    output out
+    output reg out
 );
-    wire w0, w1;
-    and a0(w0, in0, sel);
-    and a1(w1, in1, sel);
-    or or0(out, w1, w0);
+
+    always @(*) 
+    begin
+        case (sel)
+            1'b0: out <= in0;
+            1'b1: out <= in1;
+            default: out <= 1'bx;
+        endcase    
+    end
+
 endmodule
 
 module demux5_32 (
@@ -249,16 +256,24 @@ module demux5_32 (
     demux demux_level5_15 (level4[0 + 14], sel_line[3], out14, out30);
     demux demux_level5_16 (level4[0 + 15], sel_line[3], out15, out31);
 
-
 endmodule
 
 module demux (
     input in,
     input sel_line,
-    output out0, out1
+    output reg out0, out1
 );
-    wire not_sel;
-    not n1(not_sel, sel_line);
-    and a0(out0, not_sel, in);
-    and a1(out1, sel_line, in);
+    always @(*) 
+    begin
+        if(sel_line == 0) 
+        begin
+            out0 <= in;
+            out1 <= out1;
+        end 
+        else
+        begin
+            out0 <= out0;
+            out1 <= in;
+        end   
+    end
 endmodule
