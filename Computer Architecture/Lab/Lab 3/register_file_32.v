@@ -75,9 +75,8 @@ module register_file_32(
             reg_data2 <= read_data2;            
         end
     end
-
     integer i;
-    always @(posedge clk) 
+    always @(posedge clk)
     begin
         if (write_sel == 1)
         begin

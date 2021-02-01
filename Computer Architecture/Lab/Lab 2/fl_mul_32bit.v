@@ -36,16 +36,9 @@ module fl_mul_32bit(
     assign exp0 = in0[30:23];
     assign exp1 = in1[30:23];
 
-
     wire cin;
-    xor x1(cin, in0[31], in1[31]);  
-
-    wire [23:0] num1_comp;
-    not n0 [23:0] (num1_comp, num1[23:0]);
-    wire [23:0] _num1_;
-
-    mux compl[23:0] (num0[23:0], num1[23:0], product[31], _num1_[23:0]);
-
+    xor x1(cin, in0[31], in1[31]);
+    
     wire [31:0] exp_sum;
     RD_CLA r1(
         {24'd0, exp0},
@@ -57,7 +50,7 @@ module fl_mul_32bit(
     wire [63:0] out;
     wallace_tree32bit w1(
         {8'h0, num0},
-        {8'h0, _num1_},
+        {8'h0, num1},
         out
     );
 
@@ -92,11 +85,11 @@ module fl_mul_32bit(
             product[30:23] = fin_exp[7:0];
             if (shifting == 1)
             begin
-                product[22:0] = out[46:24];            
+                product[22:0] = out[46:24];
             end
             else
             begin
-                product[22:0] = out[45:23];            
+                product[22:0] = out[45:23];
             end
             product[31] = cin;
         end
