@@ -21,7 +21,7 @@ int main() {
     int counter = 0;
     while (1)
     {
-        while (GPIO_PORTF_DATA_R & 0x10 == 0);
+        while ((GPIO_PORTF_DATA_R & 0x10) == 0);
         // delay  to counter the debouncing effect
         // for (unsigned int i = 0; i < 100000; i++);
         counter += 2;
