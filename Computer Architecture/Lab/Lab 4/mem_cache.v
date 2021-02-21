@@ -1,79 +1,54 @@
-module mem_cache (
-    input read,
-    input write,
-    input clk,
-    input [15:0] addr,
+module mem_cache(
+    input read, write, clk,
+    input [15:0] writeAddr, readAddr,
     input [31:0] writeData,
-    output reg [31:0] readData
+    output reg [15:0] readData
 );
-
     integer RAM[65536 - 1: 0];
     integer data[16384 - 1:0];
-    reg [1:0] addresses [16384 - 1:0];
-    reg valid_bit [16384 - 1:0];
-    reg dirty_bit [16384 - 1:0];
-    integer i;
-    reg [3:0] replacement [1023:0];
-    reg readComp;
+    reg [1:0] addresses [1024 - 1:0];
+
+    integer i, k;
+    reg [31:0] temp;
+
+    wire [13:0] cacheLine_addr;
+    assign cacheLine_addr[13:0] = {readAddr[13:4], 4'b0};
 
     initial begin
-        for (i = 0; i < 1024; ++i) 
-        begin
-            replacement[i] <= 1'b0;
-        end
-        for (i = 0; i < 16384; ++i)
-        begin
-            valid_bit[i] = 1'b0;
-        end
         for (i = 0; i < 65536; ++i)
         begin
             RAM[i] = i;
         end
-        readComp <= 1'b0;
     end
 
-    always @(posedge clk) 
+    always @(posedge clk)
     begin
         if (read == 1'b1)
         begin
             // read the data
-            for (i = addr[3:0]; i < 16384 ; i += 1024) begin
-                if (addresses[i] == addr[15:14])
-                begin
-                    readComp <= 1'b1;
-                    readData <= data[i];
+            if (addresses[cacheLine_addr] == readAddr[15:14]) begin
+                // cache hit
+                $display($time, " Cache Hit Addr: %h", readAddr);
+                readData <= data[readAddr[13:0]];
+            end
+            else begin
+                // cache miss
+                $display($time, " Cache Miss Addr: %h", readAddr);
+                k <= 0;
+                addresses[cacheLine_addr][1:0] <= readAddr[15:14];
+                for (i = cacheLine_addr; i < cacheLine_addr + 512; i += 32) begin
+                    data[cacheLine_addr + k] = RAM[readAddr + k];
+                    k += 1;
                 end
             end
-            if (readComp == 1'b1)
-            begin
-                // cache hit
-                $display ($time, " Cache hit: %h", addr);
-                readComp = 1'b0;
-            end
-            else
-            begin
-                // cache miss -- load from memory to readData and cache
-                $display ($time, " Cache miss: %h", addr);
-                readData <= RAM[addr];
-                // replacement in a round robin fashion
-                data[{addr[13:4], replacement[addr[13:4]]}] <= RAM[addr];
-                addresses[{addr[13:4], replacement[addr[13:4]]}] <= addr[15:14];
-                valid_bit[{addr[13:4], replacement[addr[13:4]]}] <= 1'b1;
-                dirty_bit[{addr[13:4], replacement[addr[13:4]]}] <= 1'b0;
-                replacement[addr[13:4]] = (replacement[addr[13:4]] + 1) % 16;
-                readComp = 1'b0;
-            end
+                    
         end
-        else if (write == 1'b1)
+        if (write == 1'b1)
         begin
             // write the read the data
-            $display ($time, " Data Writing: %h", writeData);
-            data[{addr[13:4], replacement[addr[13:4]]}] <= writeData;
-            addresses[{addr[13:4], replacement[addr[13:4]]}] <= addr[15:14];
-            valid_bit[{addr[13:4], replacement[addr[13:4]]}] <= 1'b0;
-            dirty_bit[{addr[13:4], replacement[addr[13:4]]}] <= 1'b0;
-            RAM[addr] <= writeData;
-            replacement[addr[13:4]] = (replacement[addr[13:4]] + 1) % 16;
+            $display ($time, " Data Writing Addr: %h", writeAddr);
+            data[writeAddr[13:0]] <= writeData;
+            addresses[writeAddr[13:0]] <= writeAddr[15:14];
         end
     end
 endmodule
