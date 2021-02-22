@@ -23,20 +23,19 @@ module RDCLAtb;
 		in1 = 33;
 		cin = 0;
 		in2 = 12;
-		#11
+		#14
 		in1 = 3;
 		cin = 0;
 		in2 = 12;
-		#4
+		#14
 		in1 = 13;
 		cin = 0;
 		in2 = 12;
-		#4
+		#14
 		in1 = 113;
 		cin = 0;
 		in2 = 121;
-		#4
-		#100
+		#14
 		$finish;
 		
 	end

@@ -20,10 +20,10 @@ module RDCLA32 (
     assign level1b[1:0] = level0b[1:0];
     assign level2a[3:0] = level1a[3:0];
     assign level2b[3:0] = level1b[3:0];
-    assign level3a[7:0] = level1a[7:0];
-    assign level3b[7:0] = level1b[7:0];
-    assign level4a[15:0] = level1a[15:0];
-    assign level4b[15:0] = level1b[15:0];
+    assign level3a[7:0] = level2a[7:0];
+    assign level3b[7:0] = level2b[7:0];
+    assign level4a[15:0] = level3a[15:0];
+    assign level4b[15:0] = level3b[15:0];
 
     reg [32:0] reglevel0a, reglevel0b;
     reg [32:0] reglevel1a, reglevel1b;
@@ -42,29 +42,29 @@ module RDCLA32 (
     always @(posedge clk)
     begin
         
-        reglevel0a <= #1 level0a;
-        reglevel0b <= #1 level0b;
+        reglevel0a <= level0a;
+        reglevel0b <= level0b;
         // $display ($time, " level0 a= %d, b= %d", level0a, level0b);
         
-            reglevel1a <= #1 level1a;
-            reglevel1b <= #1 level1b; 
+            reglevel1a <= level1a;
+            reglevel1b <= level1b; 
         // $display ($time, " level1 a= %d, b= %d", level1a, level1b);
 
-            reglevel2a <= #1 level2a;
-            reglevel2b <= #1 level2b;
+            reglevel2a <= level2a;
+            reglevel2b <= level2b;
         // $display ($time, " level2 a= %d, b= %d", level2a, level2b);
 
-            reglevel3a <= #1 level3a;
-            reglevel3b <= #1 level3b;
+            reglevel3a <= level3a;
+            reglevel3b <= level3b;
         // $display ($time, " level3 a= %d, b= %d", level3a, level3b);
 
-            reglevel4a <= #1 level4a;
-            reglevel4b <= #1 level4b;
+            reglevel4a <= level4a;
+            reglevel4b <= level4b;
         // $display ($time, " level4 a= %d, b= %d", level4a, level4b);
     end
     always @(posedge clk) begin
-        sum <= #1 a ^ b ^ level4a[31:0];
-        cout <= #1 level4b[32];	
+        sum <= a ^ b ^ level4a[31:0];
+        cout <= level4b[32];	
         // $display ($time, " answer sum= %d, cout= %d", sum, cout);
     end
 
