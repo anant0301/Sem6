@@ -2,8 +2,9 @@ module mem_cache(
     input read, write, clk,
     input [15:0] writeAddr, readAddr,
     input [31:0] writeData,
-    output reg [15:0] readData
+    output reg [31:0] readData
 );
+
     integer RAM[65536 - 1: 0];
     integer data[16384 - 1:0];
     reg [1:0] addresses [1024 - 1:0];
@@ -48,7 +49,8 @@ module mem_cache(
             // write the read the data
             $display ($time, " Data Writing Addr: %h", writeAddr);
             data[writeAddr[13:0]] <= writeData;
-            addresses[writeAddr[13:0]] <= writeAddr[15:14];
+            RAM[writeAddr] <= writeData;
+            addresses[writeAddr[13:4]] <= writeAddr[15:14];
         end
     end
 endmodule

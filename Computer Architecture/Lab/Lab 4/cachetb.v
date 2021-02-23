@@ -8,7 +8,7 @@ module cachetb;
     reg [15:0] readAddr;
     reg [15:0] writeAddr;
     reg [31:0] writeData;
-    output [15:0] readData;
+    output [31:0] readData;
 
     mem_cache block(
         read, write, clk,
@@ -16,18 +16,14 @@ module cachetb;
         writeData,
         readData
     );
+
     initial begin
         forever begin
             #1
             clk = ~clk;
         end
     end
-    // initial begin
-    //     forever begin
-    //         #8
-    //         readAddr = readAddr + 1024;
-    //     end
-    // end
+
     initial
     begin
         #0
