@@ -13,7 +13,7 @@ module mul24(
     wire [47:0] level5 [0:4];
     wire [47:0] level6 [0:1];
     wire [47:0] level7 [0:1];
-    wire [31:0] sum[0:1];
+    wire [63:0] sum;
     wire cout, over;
 
     reg [47:0] reg_pp [0:23];
@@ -125,8 +125,7 @@ module mul24(
     csa48 level7_0 (reg_level6[0], reg_level6[1], reg_level6[2], level7[0], level7[1]);
 
 
-    RDCLA32 add_1({8'b0, level7[0][23:0]}, {8'b0, level7[1][23:0]}, 1'b0, clk, cout, sum[0][31:0]);
-    RDCLA32 add_2({8'b0, level7[0][47:24]}, {8'b0, level7[1][47:24]}, sum[0][24], clk, over, sum[1][31:0]);
+    RDCLA64 add_1({16'b0, level7[0][47:0]}, {16'b0, level7[1][47:0]}, 1'b0, clk, cout, sum[63:0]);
     integer i;
     always @(posedge clk)
     begin
@@ -221,7 +220,8 @@ module mul24(
         reg_level7[1] <= level7[1];
 
         // stage 9
-        product <= {sum[1][23:0], sum[0][23:0]};
+        product <= sum[47:0];
+        $display("%b", product);
         
     end
 endmodule
@@ -251,20 +251,20 @@ module csa1(
 	
 endmodule
 
-module RDCLA32 (
-    input [31:0] a, b,
+module RDCLA64 (
+    input [63:0] a, b,
     input cin,
     input clk,
     output reg cout,
-    output reg [31:0] sum
+    output reg [63:0] sum
 );
-    wire [32:0] inita, initb;
-    wire [32:0] level0a, level0b;
-    wire [32:0] level1a, level1b;
-    wire [32:0] level2a, level2b;
-    wire [32:0] level3a, level3b;
-    wire [32:0] level4a, level4b;
-    // wire [32:0] level4a, level4b;
+    wire [64:0] inita, initb;
+    wire [64:0] level0a, level0b;
+    wire [64:0] level1a, level1b;
+    wire [64:0] level2a, level2b;
+    wire [64:0] level3a, level3b;
+    wire [64:0] level4a, level4b;
+    wire [64:0] level5a, level5b;
 
     assign inita[0] = cin;
     assign initb[0] = cin;
@@ -278,20 +278,24 @@ module RDCLA32 (
     assign level3b[7:0] = level2b[7:0];
     assign level4a[15:0] = level3a[15:0];
     assign level4b[15:0] = level3b[15:0];
+    assign level5a[31:0] = level4a[31:0];
+    assign level5b[31:0] = level4b[31:0];
 
-    reg [32:0] reglevel0a, reglevel0b;
-    reg [32:0] reglevel1a, reglevel1b;
-    reg [32:0] reglevel2a, reglevel2b;
-    reg [32:0] reglevel3a, reglevel3b;
-    reg [32:0] reglevel4a, reglevel4b;
+    reg [64:0] reglevel0a, reglevel0b;
+    reg [64:0] reglevel1a, reglevel1b;
+    reg [64:0] reglevel2a, reglevel2b;
+    reg [64:0] reglevel3a, reglevel3b;
+    reg [64:0] reglevel4a, reglevel4b;
+    reg [64:0] reglevel5a, reglevel5b;
 
-    kpg_init initialize [32:1] (a, b, inita[32:1], initb[32:1]);
+    kpg_init initialize [64:1] (a, b, inita[64:1], initb[64:1]);
     
-    kpg_sum level0 [32:1] (inita[32:1], initb[32:1], inita[31:0], initb[31:0], level0a[32:1], level0b[32:1]);
-    kpg_sum level1 [32:2] (reglevel0a[32:2], reglevel0b[32:2], reglevel0a[30:0], reglevel0b[30:0], level1a[32:2], level1b[32:2]);
-    kpg_sum level2 [32:4] (reglevel1a[32:4], reglevel1b[32:4], reglevel1a[28:0], reglevel1b[28:0], level2a[32:4], level2b[32:4]);
-    kpg_sum level3 [32:8] (reglevel2a[32:8], reglevel2b[32:8], reglevel2a[24:0], reglevel2b[24:0], level3a[32:8], level3b[32:8]);
-    kpg_sum level4 [32:16] (reglevel3a[32:16], reglevel3b[32:16], reglevel3a[16:0], reglevel3b[16:0], level4a[32:16], level4b[32:16]);
+    kpg_sum level0 [64:1] (inita[64:1], initb[64:1], inita[63:0], initb[63:0], level0a[64:1], level0b[64:1]);
+    kpg_sum level1 [64:2] (reglevel0a[64:2], reglevel0b[64:2], reglevel0a[62:0], reglevel0b[62:0], level1a[64:2], level1b[64:2]);
+    kpg_sum level2 [64:4] (reglevel1a[64:4], reglevel1b[64:4], reglevel1a[60:0], reglevel1b[60:0], level2a[64:4], level2b[64:4]);
+    kpg_sum level3 [64:8] (reglevel2a[64:8], reglevel2b[64:8], reglevel2a[56:0], reglevel2b[56:0], level3a[64:8], level3b[64:8]);
+    kpg_sum level4 [64:16] (reglevel3a[64:16], reglevel3b[64:16], reglevel3a[48:0], reglevel3b[48:0], level4a[64:16], level4b[64:16]);
+    kpg_sum level5 [64:32] (reglevel4a[64:32], reglevel4b[64:32], reglevel4a[32:0], reglevel4b[32:0], level5a[64:32], level5b[64:32]);
 
     always @(posedge clk)
     begin
@@ -315,15 +319,19 @@ module RDCLA32 (
             reglevel4a <= level4a;
             reglevel4b <= level4b;
         // $display ($time, " level4 a= %d, b= %d", level4a, level4b);
+
+            reglevel5a <= level5a;
+            reglevel5b <= level5b;
+
     end
     always @(posedge clk) begin
-        sum <= a ^ b ^ level4a[31:0];
-        cout <= level4b[32];	
+        sum <= a ^ b ^ level5a[63:0];
+        cout <= level5b[64];	
         // $display ($time, " answer sum= %d, cout= %d", sum, cout);
     end
 
-
 endmodule
+
 
 module kpg_init (
     input a, b,

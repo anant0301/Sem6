@@ -41,14 +41,15 @@ module fl_mul32 (
         m1 <= {1'b1, in1[22:0]};
         product[31] <= sign;
         reg_exp <= exp_sum;
-        if (partial_product[47] == 1) begin
-            product[30:23] <= exp_diff[1];
-            product[22:0] <= partial_product[46:24];
-        end
-        else begin
+        if (partial_product[47] == 1'b0) begin
             product[30:23] <= exp_diff[0];
             product[22:0] <= partial_product[45:23];
         end
+        else begin
+            product[30:23] <= exp_diff[1];
+            product[22:0] <= partial_product[46:24];
+        end
+        // $display("%b", partial_product);
     end
 endmodule
 

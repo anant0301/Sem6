@@ -16,15 +16,15 @@ module wallacetb;
 
     initial 
     begin
-        clk     = 1;
-        num1    = 23'hf0000;
-        num2    = 23'hf0000;
+        clk = 1;
+        num1 = 7;
+        num2 = 15;
         #24
-        num1    = 23'h80000;
-        num2    = 23'h80000;
+        num1 = 324;
+        num2 = 31;
         #24
-        num1    = 23'h20000;
-        num2    = 23'h20000;
+        num1 = 3;
+        num2 = 3;
         #24
         $finish;
     end
