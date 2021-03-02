@@ -1,0 +1,4 @@
+LDR     R1, R2
+ADD     R1, R2, #1
+MUL     R2, R1, R2
+MUL     R2, R1, R2, R3
