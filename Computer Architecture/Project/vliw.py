@@ -60,3 +60,22 @@ def parser(file_name):
 
 
 parser('input_1.txt')
+
+def scheduling_check(time, line_of_code , matrix):
+    
+    pass
+
+def static_scheduling(code, n_packed_instr= 4):
+    # assert type(code) = tuple
+    # list of list of code lines
+    packed_code = []
+    # containing information about when the execution started and until when a register will be busy due to a particular line of code
+    matrix = [] 
+    # exec begin
+    time = 0
+    for i in range(len(code)):
+        for j in range(n_packed_instr):
+            if scheduling_check(time, code[j], matrix):
+                packed_code.append(code[i])
+                i += 1
+            
