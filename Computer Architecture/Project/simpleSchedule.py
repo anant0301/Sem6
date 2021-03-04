@@ -2,25 +2,11 @@ import re
 regNum = 32
 regFile = [] * regNum
 instr = {
-    'ADD':  (bin(0), 6),
-    'ADC':  (bin(1), 6),
-    'SUB':  (bin(2), 6),
-    'SBC':  (bin(3), 6),
-    'MUL':  (bin(4), 18),
-    'FADD': (bin(5), 8),
-    'FSUB': (bin(6), 8),
-    'FMUL': (bin(7), 18),
-    'AND':  (bin(8), 1),
-    'OR':   (bin(9), 1),
-    'NAND': (bin(10), 1),
-    'NOR':  (bin(11), 1),
-    'XOR':  (bin(12), 1),
-    'XNOR': (bin(13), 1),
-    'NOT':  (bin(14), 1),
-    'NEG':  (bin(15), 1),
-    'LDR':  (bin(16), 1),
-    'STR':  (bin(17), 1),
-    'HLT':  (bin(18), 1)
+    'ADD': (bin(1), 6), 'ADC': (bin(1), 6), 'SUB': (bin(2), 6), 'SBC': (bin(3), 6),
+    'MUL': (bin(4), 18), 'FADD': (bin(5), 8), 'FSUB': (bin(6), 8), 'FMUL': (bin(7), 18),
+    'AND': (bin(8), 1), 'OR': (bin(9), 1), 'NAND': (bin(10), 1), 'NOR': (bin(11), 1), 
+    'XOR': (bin(12), 1), 'XNOR': (bin(13), 1), 'NOT': (bin(14), 1), 'NEG': (bin(15), 1), 
+    'LDR': (bin(16), 1), 'STR': (bin(17), 1), 'HLT': (bin(18), 1)
 }
 regWrt = {
     "R0": 0, "R1": 0, "R2": 0, "R3": 0, "R4": 0, "R5": 0, "R6": 0, "R7": 8, "R9": 0,
@@ -28,6 +14,14 @@ regWrt = {
     "R20": 0, "R21": 0, "R22": 0, "R23": 0, "R24": 0, "R25": 0, "R26": 0, "R27": 8, "R29": 0,
     "R30": 0, "R31": 0
 }
+
+funcUnit = {
+    'ADD': 2, 'MUL': 1,  'FADD': 2, 'FMUL': 1,
+    'AND': 1, 'OR': 1, 'NAND': 1, 'NOR': 1,
+    'XOR': 1, 'XNOR': 1, 'NOT': 1, 'NEG': 1,
+    'MEM': 1
+}
+
 instr2Operands = [
     'LDR', 'STR'
 ]
@@ -69,12 +63,16 @@ with open('./input_1.txt') as fh:
             line = lines[i + j]
             # split the line of code and take the instr destReg srcReg1 srcReg2 srcReg3
             codeLine = [x.strip() for x in re.split(r', |( )|,', line) if x and strings(x.strip())]
-            print(codeLine)
+            print(codeLine, time, j, i)
             if codeLine[0] != 'HLT':
                 # spinning wait until the instr is schedulable
-                while schedulable(codeLine, time) == False:
-                    time += 1
-                time += 1
-            schedule.append((codeLine, time))
+                # while schedulable(codeLine, time) == False:
+                #     time += 1
+                # time += 1
+                if schedulable(codeLine, time):
+                    schedule.append((codeLine, time))
+                else:
+                    break
+        time += 1
         i += j
 print(schedule)
