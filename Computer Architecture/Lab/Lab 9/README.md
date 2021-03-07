@@ -10,3 +10,6 @@ Which can perform
 7) 2's Complement
 8) bitwise XNOR
 
+Ouptut:
+
+![Output](./Screenshot.png)

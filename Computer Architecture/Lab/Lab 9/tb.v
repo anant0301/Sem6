@@ -21,19 +21,19 @@ module tb;
         operand1 = 32'hffffffff;
         operand2 = 32'h0;
         operator = 8'h0;
-#5
+        #5
         operator = 8'h1;
-#5
+        #5
         operator = 8'h2;
-#5
+        #5
         operator = 8'h3;
-#5
+        #5
         operator = 8'h4;
-#5
+        #5
         operator = 8'h5;
-#5
+        #5
         operator = 8'h6;
-#5
+        #5
         operator = 8'h7;
     end
 
