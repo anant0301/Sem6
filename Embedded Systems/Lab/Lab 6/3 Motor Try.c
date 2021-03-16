@@ -32,15 +32,10 @@ int main()
     GPIO_PORTF_CR_R             =   0x01;               /* Unlock PF0 */
     GPIO_PORTF_PUR_R            =   0x11;
 
-    PWM1_2_CTL_R                =   0;                  /* stop counter */
-    PWM1_2_GENB_R               =   0x0000008C;         /* M1PWM6 output set when reload, */
     PWM1_3_CTL_R                =   0;                  /* stop counter */
     PWM1_3_GENA_R               =   0x0000008C;         /* M1PWM6 output set when reload, */
     PWM1_3_GENB_R               =   0x0000008C;         /* M1PWM6 output set when reload, */
     /* clear when match PWMCMPA */
-    PWM1_2_LOAD_R               =   16000;              /* set load value for 1kHz (16MHz/16000) */
-    PWM1_2_CMPA_R               =   15999;              /* set duty cycle to min */
-    PWM1_2_CTL_R                =   1;                  /* start timer */
     PWM1_3_LOAD_R               =   16000;              /* set load value for 1kHz (16MHz/16000) */
     PWM1_3_CMPA_R               =   15999;              /* set duty cycle to min */
     PWM1_3_CTL_R                =   1;                  /* start timer */
@@ -85,12 +80,10 @@ int main()
                 if (duty_cycle >= 15999 || duty_cycle <= 0) {
                     break;
                 }
-                PWM1_2_CMPA_R       =   duty_cycle;
                 PWM1_3_CMPA_R       =   duty_cycle;
                 delay(5);
             }
         }
-        PWM1_2_CMPA_R           =   duty_cycle;
         PWM1_3_CMPA_R           =   duty_cycle;
         delay(5);
     }
