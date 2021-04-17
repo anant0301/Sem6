@@ -67,8 +67,6 @@ module RDCLA32 (
         cout <= level4b[32];	
         // $display ($time, " answer sum= %d, cout= %d", sum, cout);
     end
-
-
 endmodule
 
 module kpg_init (

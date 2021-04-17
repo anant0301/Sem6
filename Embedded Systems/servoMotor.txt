@@ -1,0 +1,15 @@
+int angle;
+int pwm;
+
+void setup (){
+    pinMode(11, OUTPUT);
+}
+void loop() {
+//    digitalWrite(11, HIGH);
+//    // according ot datasheet
+//   delayMicroseconds(1500); // 1.5 milli sec can give 90 degree 
+//    delayMicroseconds(2500); // 2.5 milli sec can give 180 degree 
+//    digitalWrite(11, LOW);
+//    delay(50);
+
+}
